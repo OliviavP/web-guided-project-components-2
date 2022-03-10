@@ -18,16 +18,24 @@ function dogCardMaker({ imageURL, breed }) {
   /*
     <div class="dog-card">
       <img class="dog-image">
-      <h3>
+      <h3></h3>
     </div>
   */
- const dogCard = document.createElement("div");
- const image = document.createElement("img");
- const heading = document.createElement("h3");
- 
-  // set class names, attributes and text
+    const dogCard = document.createElement("div");
+    const image = document.createElement("img");
+    const heading = document.createElement("h3");
 
+  // set class names, attributes and text
+    dogCard.classList.add("dog-card");
+    image.classList.add("dog-image");
+
+    heading.textContent = `Breed: ${breed}`;
+    image.src = imageURL;
   // create the hierarchy
+    dogCard.appendChild(image);
+    dogCard.appendChild(heading);
+    console.log(dogCard);
+
 
   // add some interactivity
 
