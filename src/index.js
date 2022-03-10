@@ -1,3 +1,4 @@
+import axios from "axios";
 // 👉 TASK 1- Test out the following endpoints:
 
 //  https://dog.ceo/api/breeds/image/random
@@ -34,18 +35,33 @@ function dogCardMaker({ imageURL, breed }) {
   // create the hierarchy
     dogCard.appendChild(image);
     dogCard.appendChild(heading);
-    console.log(dogCard);
-
 
   // add some interactivity
+    dogCard.addEventListener("click", () => {
+      dogCard.classList.toggle("selected");
+    })
 
   // never forget to return!
+  return dogCard;
 }
+
+dogCardMaker({ imageURL: "blah.com", breed: "UGH" });
 
 
 // 👉 TASK 4- Bring the Axios library into the project using one of two methods:
 //    * Traditional way: put another script tag inside index.html (`https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js`)
 //    * Projects with npm: install it with npm and import it into this file
+
+axios.get("https://dog.ceo/api/breed/akita/images/random/2")
+  .then(res => {
+    console.log(res.data.message);
+  })
+  .catch(err => {
+    console.error(err);
+  })
+  .finally(() => {
+    console.log("IT'S WORKING, IT'S WORKING!");
+  })
 
 
 // 👉 TASK 5- Fetch dogs from `https://dog.ceo/api/breed/{breed}/images/random/{number}`
