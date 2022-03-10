@@ -65,8 +65,9 @@ function makeDogCards(selector) {
   })
 }
 
-makeDogCards(".entry");
-
+document.querySelector("button").addEventListener("click", () => {
+  makeDogCards(".entry");
+})
 
 // 👉 TASK 5- Fetch dogs from `https://dog.ceo/api/breed/{breed}/images/random/{number}`
 //    * ON SUCCESS: use the data to create dogCards and append them to the entry point
