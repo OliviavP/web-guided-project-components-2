@@ -1,4 +1,5 @@
 import axios from "axios";
+import breeds from "./breeds";
 // 👉 TASK 1- Test out the following endpoints:
 
 //  https://dog.ceo/api/breeds/image/random
@@ -66,6 +67,7 @@ function makeDogCards(selector) {
 }
 
 document.querySelector("button").addEventListener("click", () => {
+  document.querySelector(".entry").innerHTML = "";
   makeDogCards(".entry");
 })
 
@@ -85,3 +87,16 @@ document.querySelector("button").addEventListener("click", () => {
 
 // 👉 (OPTIONAL) TASK 8- Import the breeds from `breeds.js`
 // and loop over them, fetching a dog at each iteration
+
+// import breeds from external data source
+
+// loop over the breeds array
+breeds.forEach(breed => {
+  axios.get(`https://dog.ceo/api/breed/${breed}/images/random/3`)
+    .then(res => {
+      res.data.message.forEach(image => {
+        const dogCard = dogCardMaker({ imageURL: image, breed: breed });
+        document.querySelector(".entry").appendChild(dogCard);
+      })
+    }).catch(err => console.error(err))
+})
